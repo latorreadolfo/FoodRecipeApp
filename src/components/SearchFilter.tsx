@@ -11,7 +11,11 @@ const SearchFilter: React.FC<TSearchFilter> = ({icon, placeholder}) => {
   return (
     <View style={styles.container}>
       <FontAwesomeIcon name={icon} size={20} color="#F96163" />
-      <TextInput style={styles.txtInput} placeholder={placeholder}></TextInput>
+      <TextInput
+        style={styles.txtInput}
+        placeholder={placeholder}
+        placeholderTextColor={'#808080'}
+      />
     </View>
   );
 };
@@ -31,10 +35,11 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.1,
     shadowRadius: 7,
+    elevation: 4,
   },
   txtInput: {
     paddingLeft: 8,
     fontSize: 16,
-    color: '#808080',
+    color: '#000',
   },
 });

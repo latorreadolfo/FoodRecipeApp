@@ -5,12 +5,27 @@ import {categories, colors} from '../Constant';
 
 const CategoriesFilter = () => {
   return (
-    <View>
-      <ScrollView horizontal>
+    <View style={styles.categoriesContainer}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
         {categories.map((category, index) => {
           return (
-            <View style={styles.categoryCard}>
-              <Text>{category.category}</Text>
+            <View
+              style={[
+                styles.categoryCard,
+                {
+                  backgroundColor:
+                    index === 0 ? colors.COLOR_PRIMARY : colors.COLOR_LIGHT,
+                },
+              ]}>
+              <Text
+                style={[
+                  styles.categoryTxt,
+                  {
+                    color: index === 0 ? colors.COLOR_LIGHT : '#000',
+                  },
+                ]}>
+                {category.category}
+              </Text>
             </View>
           );
         })}
@@ -22,17 +37,21 @@ const CategoriesFilter = () => {
 export default CategoriesFilter;
 
 const styles = StyleSheet.create({
+  categoriesContainer: {},
   categoryCard: {
-    backgroundColor: colors.COLOR_LIGHT,
     marginRight: 20,
     borderRadius: 8,
     paddingHorizontal: 16,
-    paddingVertical: 18,
+    paddingVertical: 10,
     marginVertical: 16,
 
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 4},
     shadowOpacity: 0.1,
     shadowRadius: 7,
+    elevation: 4,
+  },
+  categoryTxt: {
+    fontSize: 16,
   },
 });

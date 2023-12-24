@@ -10,6 +10,7 @@ import React from 'react';
 import Header from '../components/Header';
 import SearchFilter from '../components/SearchFilter';
 import CategoriesFilter from '../components/CategoriesFilter';
+import RecipeCard from '../components/RecipeCard';
 
 const RecipeListScreen = () => {
   return (
@@ -27,6 +28,14 @@ const RecipeListScreen = () => {
         {/* CATEGORIES LIST */}
         <CategoriesFilter />
       </View>
+
+      {/* RECIPE LIST FILTER */}
+      <View style={styles.recipesView}>
+        <Text style={styles.recipesHeading}>Popular</Text>
+
+        {/* RECIPES LIST */}
+        <RecipeCard />
+      </View>
     </SafeAreaView>
   );
 };
@@ -42,5 +51,15 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: 'bold',
     color: '#000',
+    marginTop: 12,
+  },
+  recipesHeading: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#000',
+    marginTop: 12,
+  },
+  recipesView: {
+    flex: 1,
   },
 });
