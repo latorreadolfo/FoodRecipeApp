@@ -21,7 +21,7 @@ const RecipeCard = () => {
         data={recipeList}
         renderItem={({item}) => (
           <Pressable
-            onPress={() => navigation.navigate('RecipeDetail')}
+            onPress={() => navigation.navigate('RecipeDetail', {item: item})}
             style={styles.recipeCard}>
             <Image style={styles.recipeImg} source={item.image} />
             <Text style={styles.recipeDescription}>{item.name}</Text>
