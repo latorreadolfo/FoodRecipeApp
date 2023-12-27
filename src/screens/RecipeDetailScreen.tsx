@@ -5,6 +5,7 @@ import {
   StyleSheet,
   SafeAreaView,
   Pressable,
+  ScrollView,
 } from 'react-native';
 
 import React from 'react';
@@ -41,37 +42,54 @@ const RecipeDetailScreen = ({route}) => {
         {/* RECIPE NAME */}
         <Text style={styles.itemTxt}>{item.name}</Text>
 
-        {/* RECIPE DESCRIPTION */}
-        <Text style={styles.recipeDescription}>{item.description}</Text>
+        <ScrollView>
+          {/* RECIPE DESCRIPTION */}
+          <Text style={styles.recipeDescription}>{item.description}</Text>
 
-        {/* RECIPE EXTRA DETAILS */}
-        <View style={styles.mainDetailsContainer}>
-          <View style={styles.firstBox}>
-            <Text style={styles.emoji}>👨🏼‍🍳</Text>
-            <Text style={styles.emojiTxt}>{item.difficulty}</Text>
+          {/* RECIPE EXTRA DETAILS */}
+          <View style={styles.mainDetailsContainer}>
+            <View style={styles.firstBox}>
+              <Text style={styles.emoji}>👨🏼‍🍳</Text>
+              <Text style={styles.emojiTxt}>{item.difficulty}</Text>
+            </View>
+            <View style={styles.secondBox}>
+              <Text style={styles.emoji}>⏱</Text>
+              <Text style={styles.emojiTxt}>{item.time}</Text>
+            </View>
+            <View style={styles.thirdBox}>
+              <Text style={styles.emoji}>🔥</Text>
+              <Text style={styles.emojiTxt}>{item.calories}</Text>
+            </View>
           </View>
-          <View style={styles.secondBox}>
-            <Text style={styles.emoji}>⏱</Text>
-            <Text style={styles.emojiTxt}>{item.time}</Text>
-          </View>
-          <View style={styles.thirdBox}>
-            <Text style={styles.emoji}>🔥</Text>
-            <Text style={styles.emojiTxt}>{item.calories}</Text>
-          </View>
-        </View>
 
-        {/* INGREDIENTS */}
-        <View style={styles.ingredientsView}>
-          <Text style={styles.ingredientsHeading}>Ingredients:</Text>
+          {/* INGREDIENTS */}
+          <View style={styles.ingredientsView}>
+            <Text style={styles.ingredientsHeading}>Ingredients:</Text>
 
-          {item.ingredients.map(ingredient => {
-            return (
-              <View style={styles.ingredientsViewlist}>
-                <Text style={styles.ingredientsTxt}>{ingredient}</Text>
-              </View>
-            );
-          })}
-        </View>
+            {item.ingredients.map(ingredient => {
+              return (
+                <View style={styles.ingredientsViewlist}>
+                  <Text style={styles.ingredientsTxt}>{`• ${ingredient}`}</Text>
+                </View>
+              );
+            })}
+          </View>
+
+          {/* STEPS */}
+          <View style={styles.ingredientsView}>
+            <Text style={styles.ingredientsHeading}>Steps:</Text>
+
+            {item.steps.map((step, index) => {
+              return (
+                <View style={styles.ingredientsViewlist}>
+                  <Text style={styles.ingredientsTxt}>{`${
+                    index + 1
+                  } ) ${step}`}</Text>
+                </View>
+              );
+            })}
+          </View>
+        </ScrollView>
       </View>
     </View>
   );
@@ -168,6 +186,7 @@ const styles = StyleSheet.create({
   },
   ingredientsViewlist: {
     marginLeft: 5,
+    marginTop: 5,
   },
   ingredientsTxt: {
     color: colors.COLOR_DARK,
