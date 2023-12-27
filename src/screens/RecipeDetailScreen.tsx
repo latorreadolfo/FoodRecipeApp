@@ -16,9 +16,33 @@ import {
   NavigationProp,
   ParamListBase,
   useNavigation,
+  useRoute,
+  RouteProp,
 } from '@react-navigation/native';
 
-const RecipeDetailScreen = ({route}) => {
+type TIngredient = string;
+interface RouteParams {
+  item: {
+    id: string;
+    name: string;
+    // image: string,
+    rating: string;
+    ingredients: string[];
+    time: string;
+    difficulty: string;
+    calories: string;
+    color: string;
+    description: string;
+    steps: string[];
+  };
+}
+
+type NavigatorParamList = {
+  RecipeDetails: RouteParams;
+};
+
+const RecipeDetailScreen = () => {
+  const route = useRoute<RouteProp<NavigatorParamList, 'RecipeDetails'>>();
   const {item} = route.params;
   const navigation = useNavigation();
   return (
@@ -66,7 +90,7 @@ const RecipeDetailScreen = ({route}) => {
           <View style={styles.ingredientsView}>
             <Text style={styles.ingredientsHeading}>Ingredients:</Text>
 
-            {item.ingredients.map(ingredient => {
+            {item.ingredients.map((ingredient: TIngredient) => {
               return (
                 <View style={styles.ingredientsViewlist}>
                   <Text style={styles.ingredientsTxt}>{`• ${ingredient}`}</Text>
@@ -79,7 +103,7 @@ const RecipeDetailScreen = ({route}) => {
           <View style={styles.ingredientsView}>
             <Text style={styles.ingredientsHeading}>Steps:</Text>
 
-            {item.steps.map((step, index) => {
+            {item.steps.map((step: string, index: number) => {
               return (
                 <View style={styles.ingredientsViewlist}>
                   <Text style={styles.ingredientsTxt}>{`${
@@ -141,6 +165,7 @@ const styles = StyleSheet.create({
   },
   mainDetailsContainer: {
     flexDirection: 'row',
+    justifyContent: 'space-around',
   },
   firstBox: {
     backgroundColor: '#F9E79F',
